@@ -11,7 +11,7 @@
 composer create-project \
     --repository '{"type": "vcs", "url": "https://github.com/bdilhof/dpb-starter"}' \
     --stability=dev \
-    --ignore-platform-reqs
+    --ignore-platform-reqs \
     bdilhof/dpb-starter your-project-name
 ```
 
