@@ -1,4 +1,4 @@
-# DPB Helpdesk
+# DPB Starter Project
 
 ## System requirements
 
