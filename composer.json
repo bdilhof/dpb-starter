@@ -39,14 +39,17 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "sail up -d",
+            "sail composer install",
+            "sail npm install",
+            "sail npm run build",
+            "sail artisan migrate:fresh",
+            "sail artisan db:seed"
         ]
     },
     "extra": {
