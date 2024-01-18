@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "bdilhof/dpb-starter",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
@@ -34,11 +34,6 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -68,6 +63,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
