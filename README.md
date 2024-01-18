@@ -10,39 +10,7 @@
 ## Commands
 
 ```
-git clone git@github.com:bdilhof/dpb-helpdesk.git && cd dpb-helpdesk/
-```
-
-```
-composer install --ignore-platform-reqs
-```
-
-```
-cp .env.example .env
-```
-
-```
-sail up -d
-```
-
-```
-sail composer install
-```
-
-```
-sail artisan key:generate
-```
-
-```
-sail artisan migrate:fresh --seed
-```
-
-```
-sail npm install
-```
-
-```
-sail npm run build
+composer create-project --repository '{"type": "vcs", "url": "https://github.com/bdilhof/dpb-starter"}' --stability=dev --ignore-platform-reqs bdilhof/dpb-starter testovacka
 ```
 
 Open http://localhost

@@ -2,5 +2,4 @@
 
 return [
     "admin" => "Administrácia",
-    "categories" => "Kategórie"
 ];
