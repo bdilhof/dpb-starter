@@ -1,13 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Admin\TicketCategoryController;
-use App\Http\Controllers\Evidence\EvidenceController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Tickets\TicketController;
-
-use App\Models\Tickets\TicketEntry;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +34,40 @@ Route::middleware(["auth"])->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
+});
+
+Route::get("word", function () {
+
+    // Get user data
+    $user = [
+        "name" => "BRUNO DILHOF",
+        "address" => "Turčianska 3, 821 09 Bratislava",
+        "personalNumber" => 17085,
+        "phone" => "+421 944 353 185",
+        "email" => "brunodilhof@gmail.com",
+    ];
+
+    // Load template
+    $templatePath = '/var/www/html/public/payroll_template.docx';
+
+    // Fill template with values
+    $templateProcessor = new TemplateProcessor($templatePath);
+    $templateProcessor->setValue("name", $user["name"]);
+    $templateProcessor->setValue("address", $user["address"]);
+    $templateProcessor->setValue("personalNumber", $user["personalNumber"]);
+    $templateProcessor->setValue("phone", $user["phone"]);
+    $templateProcessor->setValue("email", $user["email"]);
+    $templateProcessor->setValue('date', now()->format("d.m.Y"));
+
+    // Make file name
+    $fileName = "{$user['personalNumber']}_dohoda_o_zasielani_vyplatnej_pasky_v_elektronickej_podobe.docx";
+
+    // Store created file
+    $newTemplatePath = storage_path("app/{$fileName}");
+    $templateProcessor->saveAs($newTemplatePath);
+
+    // Return download response and delete temp file
+    return response()
+        ->download($newTemplatePath)
+        ->deleteFileAfterSend(true);
 });
