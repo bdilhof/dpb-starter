@@ -7,10 +7,10 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
-use Maatwebsite\Excel\Concerns\WithMapping;
+
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class UsersExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize, WithMapping
+class UsersExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize
 {
     public function styles(Worksheet $sheet)
     {
@@ -33,16 +33,5 @@ class UsersExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
     public function collection()
     {
         return User::all();
-    }
-
-    public function map($user): array
-    {
-        return [
-            '="' . $user->id . '"',
-            '="' . $user->name . '"',
-            '="' . $user->login . '"',
-            '="' . $user->color . '"',
-            '="' . $user->email . '"',
-        ];
     }
 }
