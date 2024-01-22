@@ -53,7 +53,7 @@ Route::get("word", function () {
     ];
 
     // Load template
-    $templatePath = '/var/www/html/public/payroll_template.docx';
+    $templatePath = base_path("public/payroll_template.docx");
 
     // Fill template with values
     $templateProcessor = new TemplateProcessor($templatePath);
