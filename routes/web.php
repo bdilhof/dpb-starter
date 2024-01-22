@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use PhpOffice\PhpWord\TemplateProcessor;
+use App\Exports\UsersExport;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::middleware(["auth"])->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
+});
+
+Route::get("excel", function () {
+    return Excel::download(new UsersExport, 'users.xlsx');
 });
 
 Route::get("word", function () {
